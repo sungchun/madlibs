@@ -8,6 +8,9 @@ authors = ["preston <preston.ng@keplergrp.com>"]
 python = "^3.10"
 Flask = "^2.2.2"
 sql = "^2022.4.0"
+SQLAlchemy = "^1.4.41"
+Flask-SQLAlchemy = "^2.5.1"
+psycopg2 = "^2.9.3"
 
 [tool.poetry.dev-dependencies]
 
