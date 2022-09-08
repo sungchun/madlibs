@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 
@@ -37,4 +37,38 @@ class Verb(db.Model):
 
     def __repr__(self):
         return f'<Adjective {self.word}>'
+
+@app.route("/adjective", methods=["GET"])
+def get_adjectives():
+    result = Adjective.Query.all()
+    return jsonify(result.data)
+
+@app.route("/adjective/<id>", methods=["GET"])
+def get_adjective(id):
+    adjective = Adjective.query.get(id)
+    return jsonify(adjective)
+
+@app.route("/adjective", methods=["POST"])
+def add_adjective():
+    new_word = request.json["word"]
+    new_adjective = Adjective(word = new_word)
+    db.session.add(new_adjective)
+    db.session.commit()
+    return jsonify(new_adjective)
+
+@app.route("/adjective/<id>", methods=["POST"])
+def adjective_update(id):
+    adjective = Adjective.query.get(id)
+    new_word = request.json["word"]
+    adjective.word = new_word
+    db.session.commit()
+    return jsonify(adjective)
+
+@app.route("/adjective/<id>", methods=["DELETE"])
+def adjective_delete(id):
+    adjective = Adjective.query.get(id)
+    db.session.delete(adjective)
+    db.session.commit()
+    return jsonify(adjective)
+
 
