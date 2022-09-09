@@ -20,12 +20,13 @@ def populate_adverbs():
 def populate_nouns():
     with open("words/nouns.csv", "r") as file:
         rows = csv.reader(file)
+
         for row in rows:
             new = Noun(word=row)
             db.session.add(new)
         db.session.commit()
 
-def population_verbs():
+def populate_verbs():
     with open("words/verbs.csv", "r") as file:
         rows = csv.reader(file)
         for row in rows:
