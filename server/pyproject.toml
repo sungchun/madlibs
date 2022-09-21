@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "madlibs"
+version = "0.1.0"
+description = "A word generator for madlib-style games"
+authors = ["preston <preston.ng@keplergrp.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.2.2"
+sql = "^2022.4.0"
+SQLAlchemy = "^1.4.41"
+Flask-SQLAlchemy = "^2.5.1"
+psycopg2 = "^2.9.3"
+flask-marshmallow = "^0.14.0"
+tox = "^3.26.0"
+pytest = "^7.1.3"
+Flask-Migrate = "^3.1.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
