@@ -1,38 +1,49 @@
-from __init__ import db, Adjective, Adverb, Noun, Verb
+from extensions import db
+from models import Adjective, Adverb, Noun, Verb
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 import csv
 
+engine = create_engine('postgresql://madlibs_dev:madlibs_dev@db/madlibs_dev')
+
+Session = sessionmaker()
+local_session = Session(bind=engine)
+
 def populate_adjectives():
-    with open("words/adjectives.csv", "r") as file:
+    with open("/home/projuser/src/app/words/adjectives.csv", "r") as file:
         rows = csv.reader(file)
         for row in rows:
-            new = Adjective(word=row)
-            db.session.add(new)
-        db.session.commit()
+            new = Adjective.Adjective(word=row)
+            local_session.add(new)
+
+        local_session.commit()
 
 def populate_adverbs():
-    with open("words/adverbs.csv", "r") as file:
+    with open("/home/projuser/src/app/words/adverbs.csv", "r") as file:
         rows = csv.reader(file)
         for row in rows:
-            new = Adverb(word=row)
-            db.session.add(new)
-        db.session.commit()
+            new = Adverb.Adverb(word=row)
+            local_session.add(new)
+
+        local_session.commit()
 
 def populate_nouns():
-    with open("words/nouns.csv", "r") as file:
+    with open("/home/projuser/src/app/words/nouns.csv", "r") as file:
         rows = csv.reader(file)
-
         for row in rows:
-            new = Noun(word=row)
-            db.session.add(new)
-        db.session.commit()
+            new = Noun.Noun(word=row)
+            local_session.add(new)
+
+        local_session.commit()
 
 def populate_verbs():
-    with open("words/verbs.csv", "r") as file:
+    with open("/home/projuser/src/app/words/verbs.csv", "r") as file:
         rows = csv.reader(file)
         for row in rows:
-            new = Verb(word=row)
-            db.session.add(new)
-        db.session.commit()
+            new = Verb.Verb(word=row)
+            local_session.add(new)
+
+        local_session.commit()
 
 def main():
     populate_adjectives()
