@@ -26,6 +26,8 @@ COPY --chown=projuser:projuser poetry.lock .
 RUN poetry config virtualenvs.in-project true
 RUN poetry install
 
+ENV PYTHONPATH /home/projuser/src
+
 COPY --chown=projuser:projuser app ./app
 COPY --chown=projuser:projuser tests ./tests
 COPY --chown=projuser:projuser run.py .

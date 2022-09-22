@@ -15,6 +15,7 @@ services:
     depends_on:
       - db
   db:
+    restart: always
     image: postgres
     environment:
       - POSTGRES_USER=madlibs_dev
