@@ -5,7 +5,7 @@ services:
     build: ./server
     command: flask run --host=0.0.0.0 --port=5000
     volumes:
-      - ./server:home/projuser/src
+      - ./server:/home/projuser/src
       - /home/projuser/src/.venv
     environment:
       - FLASK_APP=run.py

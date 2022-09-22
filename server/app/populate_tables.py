@@ -1,36 +1,37 @@
-from __init__ import db, Adjective, Adverb, Noun, Verb
+import app
+from app.extensions import db
+from app.models import Adjective, Adverb, Noun, Verb
 import csv
 
 def populate_adjectives():
-    with open("words/adjectives.csv", "r") as file:
+    with open("/home/projuser/src/app/words/adjectives.csv", "r") as file:
         rows = csv.reader(file)
         for row in rows:
-            new = Adjective(word=row)
+            new = Adjective.Adjective(word=row)
             db.session.add(new)
         db.session.commit()
 
 def populate_adverbs():
-    with open("words/adverbs.csv", "r") as file:
+    with open("/home/projuser/src/app/words/adverbs.csv", "r") as file:
         rows = csv.reader(file)
         for row in rows:
-            new = Adverb(word=row)
+            new = Adverb.Adverb(word=row)
             db.session.add(new)
         db.session.commit()
 
 def populate_nouns():
-    with open("words/nouns.csv", "r") as file:
+    with open("/home/projuser/src/app/words/nouns.csv", "r") as file:
         rows = csv.reader(file)
-
         for row in rows:
-            new = Noun(word=row)
+            new = Noun.Noun(word=row)
             db.session.add(new)
         db.session.commit()
 
 def populate_verbs():
-    with open("words/verbs.csv", "r") as file:
+    with open("/home/projuser/src/app/words/verbs.csv", "r") as file:
         rows = csv.reader(file)
         for row in rows:
-            new = Verb(word=row)
+            new = Verb.Verb(word=row)
             db.session.add(new)
         db.session.commit()
 
